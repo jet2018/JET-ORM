@@ -58,5 +58,9 @@ trait Builder
         return $this->all();
     }
 
-
 }
+
+
+// prepare a query
+// bind params
+//execute the query

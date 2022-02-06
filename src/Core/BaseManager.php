@@ -59,7 +59,6 @@ class BaseManager
             try {
                 $conn = new PDO($this->connection['engine'] . ':host=' . $this->connection['server'] . ";dbname=" . $this->connection['database'], $this->connection['user'], $this->connection['password'], $this->connection['options']);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "Connected to " . $this->connection['database'] . " successfully \n";
                 return $conn;
             } catch (PDOException $e) {
                 $message = "Connection failed: " . $e->getMessage();

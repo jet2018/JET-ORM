@@ -11,5 +11,7 @@
         "name": "jet2018",
         "email": "ezrajet9@gmail.com"
     }],
-    "require": {}
+    "require": {
+        "symfony/console": "^5.4"
+    }
 }

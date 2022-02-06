@@ -11,9 +11,7 @@ public $DATABASE = [
     'password' => 'peacebewithyouall2020',
     'database' => "blogdb",
     'engine' => 'mysql', // can pgsl, mysql, sqlite, etc
-    'options' => [
-
-    ],
+    'options' => [], // edit this to add any pdo configurations you would wsh to use.
 ];
 
 
