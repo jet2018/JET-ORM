@@ -1,8 +1,11 @@
 <?php
 
 namespace Jet\Jet\Fields;
+
 use Jet\Jet\Exceptions\FieldException;
 use Jet\Jet\Helpers\Helper;
+use Reflection;
+use ReflectionClass;
 
 trait BaseField
 {
@@ -17,11 +20,11 @@ trait BaseField
     public $types = [
         'CharField' => 'VARCHAR',
         'IntegerField' => 'INT',
-        'FloatField'=>'float',
-        'TextField'=>'TEXT',
-        'DateTimeField'=>'DATETIME',
+        'FloatField' => 'float',
+        'TextField' => 'TEXT',
+        'DateTimeField' => 'DATETIME',
         'DateField' => 'DATE',
-        'SmallIntField'=>'SMALLINT',
+        'SmallIntField' => 'SMALLINT',
         'LargeTextField' => 'TEXT',
         'SmallTextField' => 'MEDIUMTEXT',
         'JsonField' => 'JSON',
@@ -29,11 +32,13 @@ trait BaseField
         'PrimaryKeyField' => 'INT'
     ];
 
-    public function getFieldName(){
-        return self::class;
+    public function getFieldName()
+    {
+        return get_class();
     }
 
-    public function getType(){
+    public function getType()
+    {
         return $this->types[$this->getFieldName()];
     }
 
@@ -43,30 +48,35 @@ trait BaseField
      */
     public function setLength($length)
     {
-        $this->getType().'('.$length.')';
+        $this->getType() . '(' . $length . ')';
         $this->length = $length;
     }
 
-    public function auto_increment(){
-        if($this->getType() === 'INT'){
+    public function auto_increment()
+    {
+        if ($this->getType() === 'INT') {
             return ' AUTO INCREMENT ';
-        }else{
+        } else {
             throw new FieldException('Only Integers can be auto increment', 12345);
         }
     }
 
-    public function setUnique(){
+    public function setUnique()
+    {
         return $this->unique = ' UNIQUE ';
     }
 
-//    public function auto_now_add(){
-//        return $this->default = $this->getType() == 'DATETIME' ? 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP' : 'NULL';
-//    }
-//
-//    public function auto_now(){
-//        return $this->default = 'CURRENT_TIMESTAMP';
-//    }
+    //    public function auto_now_add(){
+    //        return $this->default = $this->getType() == 'DATETIME' ? 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP' : 'NULL';
+    //    }
+    //
+    //    public function auto_now(){
+    //        return $this->default = 'CURRENT_TIMESTAMP';
+    //    }
 
-
-
+    public function __name()
+    {
+        $class = new ReflectionClass($this);
+        return $class->getShortName();
+    }
 }
