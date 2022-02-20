@@ -2,6 +2,7 @@
 
 namespace Jet\Jet\Commands;
 use \Symfony\Component\Console\Command\Command;
+use Jet\Jet\Migrator;
 
 /**
  * make migrations
@@ -10,6 +11,7 @@ use \Symfony\Component\Console\Command\Command;
  */
 class MakeMigrations extends Command
 {
-
+    //$mg = new Migrator\Calculator();
+    //$mg->create_migration_folder();
 
 }

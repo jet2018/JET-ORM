@@ -10,4 +10,7 @@ class CharField
     {
         $this->__name();
     }
+
+
+    
 }

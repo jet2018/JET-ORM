@@ -2,6 +2,8 @@
 
 namespace Jet\Jet\Core;
 
+use PDO;
+
 class BaseModel extends BaseManager
 {
     /**
@@ -9,12 +11,13 @@ class BaseModel extends BaseManager
      */
     public $table;
 
-    public function __construct($model_name=null)
+    public function __construct($model_name = null)
     {
-       $model_name ? $this->table = $model_name: self::class;
+        $model_name ? $this->table = $model_name : self::class;
     }
 
-    function structure(){
+    public function structure()
+    {
 
         $statement = $this->conn->query('DESCRIBE ' . $this->table);
         $structure = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -23,8 +26,6 @@ class BaseModel extends BaseManager
             $columns[$field['Field']] = $field['Field'] . '=>' . "[
                 'type'=> " . $field['Type'] . ", 'Null'=> " . $field['Null'] . ", 'Key'=> " . $field['Key'] . ", 'Default'=> " . $field['Default'] . ", 'Extra'=> " . $field['Extra'] . " ]";
         }
-
         return $columns;
     }
-
 }

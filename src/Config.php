@@ -4,6 +4,7 @@ namespace Jet\Jet;
 
 class Config
 {
+public  $BASE_URL = __DIR__;
 
 public $DATABASE = [
     'server' => 'localhost',

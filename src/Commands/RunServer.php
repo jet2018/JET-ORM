@@ -1,4 +1,5 @@
 <?php
+
 namespace Jet\Jet\Commands;
 
 use Symfony\Component\Console\Command\Command;
@@ -25,7 +26,7 @@ class RunServer extends Command
     {
         $connection = new BaseManager();
         $connection->connect();
-        $output->writeln("Connected to ". $connection->connection['database']);
+        $output->writeln("Connected to " . $connection->connection['database']);
         exec('php -S localhost:8000');
     }
 }
